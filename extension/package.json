@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MinghuaLiu1977/tabs.git"
+    "url": "git+https://github.com/MinghuaLiu1977/ZenSidebar.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MinghuaLiu1977/tabs/issues"
+    "url": "https://github.com/MinghuaLiu1977/ZenSidebar/issues"
   },
-  "homepage": "https://github.com/MinghuaLiu1977/tabs#readme",
+  "homepage": "https://github.com/MinghuaLiu1977/ZenSidebar#readme",
   "devDependencies": {
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"

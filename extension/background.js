@@ -109,7 +109,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Action click (extension icon) logic
 chrome.action.onClicked.addListener((tab) => {
-  const githubUrl = 'https://github.com/MinghuaLiu1977/tabs-extension';
+  const githubUrl = 'https://github.com/MinghuaLiu1977/ZenSidebar';
   chrome.tabs.query({ url: githubUrl }, (tabs) => {
     if (tabs && tabs.length > 0) {
       chrome.tabs.update(tabs[0].id, { active: true });
