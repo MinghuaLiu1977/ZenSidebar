@@ -1,0 +1,50 @@
+{
+    "manifest_version": 3,
+    "name": "ZenSidebar",
+    "version": "1.1",
+    "description": "Minimalist sidebar for tabs and bookmarks",
+    "icons": {
+        "128": "ZenSidebar_logo.png"
+    },
+    "action": {
+        "default_icon": {
+            "128": "ZenSidebar_logo.png"
+        },
+        "default_title": "ZenSidebar"
+    },
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "permissions": [
+        "tabs",
+        "bookmarks",
+        "storage",
+        "history",
+        "favicon"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "ZenSidebar_logo.png",
+                "_favicon/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
