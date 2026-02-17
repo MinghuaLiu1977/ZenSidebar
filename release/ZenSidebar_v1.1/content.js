@@ -13,6 +13,48 @@
     // Avoid multiple injections
     if (document.getElementById(ROOT_ID)) return;
 
+    // Detect Electron apps and PWA, exit early
+    // Electron apps expose specific properties in the window object
+    const isElectronApp = () => {
+        // Check for Electron-specific properties
+        if (window.process && window.process.type) return true;
+        if (window.require && window.module) return true;
+        if (navigator.userAgent.includes('Electron')) return true;
+
+        // Check for common Electron app indicators
+        const electronIndicators = [
+            window.electronAPI,
+            window.electron,
+            window.ipcRenderer,
+            window.__TAURI__,  // Tauri apps (similar to Electron)
+        ];
+
+        return electronIndicators.some(indicator => indicator !== undefined);
+    };
+
+    // Detect PWA (Progressive Web App)
+    const isPWA = () => {
+        // Check if running in standalone mode (installed PWA)
+        if (window.matchMedia('(display-mode: standalone)').matches) return true;
+        if (window.navigator.standalone === true) return true; // iOS Safari
+
+        // Check if launched from home screen
+        if (document.referrer.includes('android-app://')) return true;
+
+        return false;
+    };
+
+    // Exit if running in Electron app or PWA
+    if (isElectronApp()) {
+        console.log('[ZenSidebar] Electron app detected, extension disabled');
+        return;
+    }
+
+    if (isPWA()) {
+        console.log('[ZenSidebar] PWA detected, extension disabled');
+        return;
+    }
+
     // Create Host Element
     const host = document.createElement('div');
     host.id = ROOT_ID;
@@ -410,7 +452,7 @@
         const addrInput = document.createElement('input');
         addrInput.id = 'address-input';
         addrInput.type = 'text';
-        addrInput.placeholder = '输入网址、书签或历史...';
+        addrInput.placeholder = 'Enter URL, bookmark, or search...';
 
         const suggestionsList = document.createElement('div');
         suggestionsList.id = 'suggestions-list';
@@ -499,7 +541,7 @@
         loading.style.fontSize = '12px';
         loading.style.color = 'var(--text-secondary)';
         loading.style.textAlign = 'center';
-        loading.textContent = '同步数据中...';
+        loading.textContent = 'Loading...';
         sidebar.appendChild(loading);
 
         try {
@@ -511,7 +553,7 @@
             loading.remove();
 
             // 1. Tabs
-            const tSec = createSec('已打开标签 (Tabs)');
+            const tSec = createSec('Open Tabs');
             const tList = document.createElement('div');
             tList.className = 'list';
             if (tabsRes && tabsRes.tabs) {
@@ -531,7 +573,7 @@
             sidebar.appendChild(tSec);
 
             // 2. Bookmarks (Hierarchical, showing only Bookmark Bar)
-            const bSec = createSec('书签栏 (Bookmarks Bar)');
+            const bSec = createSec('Bookmarks Bar');
             const bContainer = document.createElement('div');
             bContainer.className = 'list';
 
@@ -539,7 +581,7 @@
                 // Find "Bookmark Bar" (id is usually '1', but title check is safer across locales)
                 const bar = bookmarksRes.bookmarks[0].children.find(c =>
                     c.id === '1' ||
-                    c.title === '书签栏' ||
+                    c.title === 'Bookmarks Bar' ||
                     c.title === 'Bookmarks Bar' ||
                     c.title === 'Favorites Bar'
                 );
@@ -558,7 +600,7 @@
             setTimeout(() => addrInput.focus(), 100);
 
         } catch (err) {
-            loading.textContent = '加载失败';
+            loading.textContent = 'Loading failed';
             console.error(err);
         }
     }
@@ -593,7 +635,7 @@
 
                 const text = document.createElement('span');
                 text.className = 'item-text';
-                text.textContent = node.title || '收藏夹';
+                text.textContent = node.title || 'Favorites';
                 folderItem.appendChild(text);
 
                 const childrenContainer = document.createElement('div');
