@@ -13,6 +13,7 @@
 - **🛡️ Clean Isolation**: Built with **Shadow DOM** technology to ensure extension styles never conflict with the websites you visit.
 - **🏷️ Tab Management**: Vertically lists all open tabs. Switch or close tabs instantly with a filtered list that excludes restricted system pages.
 
+
 ## 📸 Preview
 
 ![Logo](ZenSidebar_logo.png)
