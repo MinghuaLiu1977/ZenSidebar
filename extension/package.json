@@ -1,0 +1,25 @@
+{
+  "name": "tabs",
+  "version": "1.0.0",
+  "description": "多网页窗口切换扩展",
+  "main": "background.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinghuaLiu1977/tabs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MinghuaLiu1977/tabs/issues"
+  },
+  "homepage": "https://github.com/MinghuaLiu1977/tabs#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
