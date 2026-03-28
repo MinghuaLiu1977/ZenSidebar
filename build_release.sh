@@ -57,7 +57,7 @@ echo -e "ZIP 文件: ${ZIP_FILE}"
 echo -e "文件大小: $(du -h "${ZIP_FILE}" | cut -f1)"
 echo ""
 echo -e "${BLUE}包含的文件:${NC}"
-unzip -l "${ZIP_FILE}" | tail -n +4 | head -n -2
+unzip -l "${ZIP_FILE}" | grep "ZenSidebar_v"
 
 echo ""
 echo -e "${YELLOW}下一步:${NC}"

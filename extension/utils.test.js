@@ -1,4 +1,4 @@
-import { flattenBookmarks } from './utils.js';
+import { flattenBookmarks, shouldShowButton } from './utils.js';
 
 describe('flattenBookmarks', () => {
     test('should flatten a simple bookmark tree', () => {
@@ -34,5 +34,24 @@ describe('flattenBookmarks', () => {
         const result = flattenBookmarks(tree);
         expect(result).toHaveLength(1);
         expect(result[0].title).toBe('Sub Link');
+    });
+});
+
+describe('shouldShowButton', () => {
+    test('should return true when window is in fullscreen', () => {
+        expect(shouldShowButton('fullscreen', false)).toBe(true);
+    });
+
+    test('should return true when an element is in fullscreen via API', () => {
+        expect(shouldShowButton('normal', true)).toBe(true);
+    });
+
+    test('should return false when window is normal and no element is in fullscreen', () => {
+        expect(shouldShowButton('normal', false)).toBe(false);
+    });
+
+    test('should return false for other window states', () => {
+        expect(shouldShowButton('minimized', false)).toBe(false);
+        expect(shouldShowButton('maximized', false)).toBe(false);
     });
 });

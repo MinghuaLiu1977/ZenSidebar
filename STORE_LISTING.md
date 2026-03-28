@@ -151,7 +151,7 @@ https://github.com/MinghuaLiu1977/ZenSidebar
 
 ## 版本信息
 
-**当前版本**: 1.1
+**当前版本**: 1.2
 **最小 Chrome 版本**: 88 (Manifest V3 支持)
 
 ---
@@ -159,6 +159,15 @@ https://github.com/MinghuaLiu1977/ZenSidebar
 ## 更新日志模板
 
 ```
+Version 1.2 - "Smart & Focused" Update
+
+Features:
+• Zen Mode: Floating ball visibility now tied to Full-screen mode (Window/Element).
+• Smart Isolation: Tab list now only shows tabs from the current Chrome window.
+• Ergonomic Layout: Search bar moved to the bottom with upward-opening suggestions.
+• Enhanced UI: Improved opacity for search result popups for better readability.
+• Refinements: Better theme consistency and internal performance optimizations.
+
 Version 1.1 - Initial Release
 
 Features:
